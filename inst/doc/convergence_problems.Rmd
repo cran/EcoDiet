@@ -1,0 +1,58 @@
+---
+title: "How to deal with convergence problems"
+author: "Heloise Thero, Pierre-Yves Hernvann"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{3. How to deal with convergence problems}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette help you deal with troubling messages from the `run_model` function.
+
+* The 'adaptation incomplete' warning or 'Stopping adaptation' note mean that the samplers aren't optimised for your model after the adaptation phase. JAGS doesn't estimate that the model will run with the optimal state. This tends to happen in complex models for a too small number of adaptation steps (`nb_adapt`).
+
+* The 'convergence problem' warning means that the Gelman-Rubin diagnostic stayed above 1.1 for at least one variable. The Gelman-Rubin statistic measures the convergence for each variable. Convergence problems can occur in complex models with too small number of iterations (`nb_iter`).
+
+As a prerequisite, the `preprocess_data`, `write_model` and `run_model` functions must have been run without errors before trying to solve the convergence problems:
+
+```{r, results = 'hide', message = FALSE, warning = FALSE}
+library(EcoDiet)
+
+example_stomach_data_path <- system.file("extdata", "example_stomach_data.csv",
+                                    package = "EcoDiet")
+example_biotracer_data_path <- system.file("extdata", "example_biotracer_data.csv",
+                                    package = "EcoDiet")
+
+data <- preprocess_data(biotracer_data = read.csv(example_biotracer_data_path),
+                        trophic_discrimination_factor = c(0.8, 3.4),
+                        literature_configuration = FALSE,
+                        stomach_data = read.csv(example_stomach_data_path))
+
+model_string <- write_model(literature_configuration = FALSE)
+
+mcmc_output <- run_model(textConnection(model_string), data)
+```
+
+## Increase the number of iterations and/or adaptation steps
+
+The first thing that you should try is setting a higher number of iterations and/or adaptation steps to run the model. Depending on your data (e.g., food-web complexity, data informativeness), this can take **hours or days** to run:
+
+```{r, eval = FALSE}
+mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e4, nb_iter = 1e7)
+```
+
+## Specify initial values for the model
+
+The next step might be to define starting values from which to run the MCMC chains. By default JAGS will use the prior distributions to randomly fix the starting values of the chains, which can cause problems.
+
+A large inconsistency between the literature priors and the data can eventually create convergence problems. Thus, first check and eventually modify the prior distributions used through the `literature_diets` table, the `nb_literature` and the `literature_slope` parameters (if you used priors from the literature).
+
+Or you can try to manually set a good set of fixed values for initializing MCMC chains, i.e., fixed values that you know are close to the values you want the model to converge to. This way the model is given a good start and it should be faster to converge.
+
+## Conclusions
+
+If you still have an 'adaptation incomplete' warning or 'Stopping adaptation' note, you can just live with the sub-optimal sampler efficiency and run the model for a higher number of iterations.
+
+If you still have a 'convergence problem' message, you cannot use the obtained results as they are clearly incorrect.
