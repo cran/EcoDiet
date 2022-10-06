@@ -16,7 +16,7 @@ realistic_biotracer_data_path <- system.file("extdata", "realistic_biotracer_dat
 realistic_biotracer_data <- read.csv(realistic_biotracer_data_path)
 knitr::kable(realistic_biotracer_data[c(1:3, 31:33, 61:63), ])
 
-## ---- fig.height = 5, fig.width = 8, fig.align = "center"---------------------
+## ---- fig.height = 5, fig.width = 8-------------------------------------------
 library(EcoDiet)
 
 plot_data(biotracer_data = realistic_biotracer_data,
@@ -30,10 +30,10 @@ data <- preprocess_data(biotracer_data = realistic_biotracer_data,
                         literature_configuration = literature_configuration,
                         stomach_data = realistic_stomach_data)
 
-## ---- fig.height = 5, fig.width = 8, fig.align = "center"---------------------
+## ---- fig.height = 5, fig.width = 8-------------------------------------------
 plot_prior(data, literature_configuration)
 
-## ---- fig.height = 5, fig.width = 8, fig.align = "center"---------------------
+## ---- fig.height = 5, fig.width = 8-------------------------------------------
 plot_prior(data, literature_configuration, pred = "Pout")
 
 ## -----------------------------------------------------------------------------
@@ -72,10 +72,10 @@ data <- preprocess_data(biotracer_data = realistic_biotracer_data,
                         nb_literature = 12,
                         literature_slope = 0.5)
 
-## ---- fig.height = 5, fig.width = 8, fig.align = "center"---------------------
+## ---- fig.height = 5, fig.width = 8-------------------------------------------
 plot_prior(data, literature_configuration)
 
-## ---- fig.height = 5, fig.width = 8, fig.align = "center"---------------------
+## ---- fig.height = 5, fig.width = 8-------------------------------------------
 plot_prior(data, literature_configuration, pred = "Pout")
 
 ## -----------------------------------------------------------------------------

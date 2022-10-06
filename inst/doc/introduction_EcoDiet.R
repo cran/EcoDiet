@@ -109,7 +109,7 @@ data <- preprocess_data(biotracer_data = example_biotracer_data,
                         nb_literature = 10,
                         literature_slope = 0.5)
 
-## ---- fig1, fig.height = 4, fig.width = 6, fig.align = "center"---------------
+## ---- fig1, fig.height = 4, fig.width = 6-------------------------------------
 plot_data(biotracer_data = example_biotracer_data,
           stomach_data = example_stomach_data)
 
@@ -118,13 +118,13 @@ plot_data(biotracer_data = example_biotracer_data,
 #            stomach_data = example_stomach_data,
 #            save = TRUE, save_path = ".")
 
-## ---- fig.height = 4, fig.width = 6, fig.align = "center"---------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 plot_prior(data, literature_configuration)
 
-## ---- fig.height = 4, fig.width = 6, fig.align = "center"---------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 plot_prior(data, literature_configuration, pred = "huge")
 
-## ---- fig.height = 4, fig.width = 6, fig.align = "center"---------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 data <- preprocess_data(biotracer_data = example_biotracer_data,
                         trophic_discrimination_factor = c(0.8, 3.4),
                         literature_configuration = literature_configuration,
@@ -154,19 +154,19 @@ mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e1, nb_
 #  
 #  save(mcmc_output_example, file = "./data/mcmc_output_example.rda")
 
-## ---- fig.height = 4, fig.width = 6, fig.align = "center"---------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 plot_results(mcmc_output_example, data)
 
 ## -----------------------------------------------------------------------------
 print(colMeans(mcmc_output_example))
 
-## ---- fig.height = 4, fig.width = 6, fig.align = "center"---------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 plot_results(mcmc_output_example, data, pred = "huge")
 
-## ---- fig.height = 4, fig.width = 6, fig.align = "center"---------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 plot_results(mcmc_output_example, data, pred = "large")
 
-## ---- fig.height = 4, fig.width = 6, fig.align = "center"---------------------
+## ---- fig.height = 4, fig.width = 6-------------------------------------------
 len <- dim(mcmc_output_example)[2]
 mcmc_output2 <- mcmc_output_example
 mcmc_output2[, 1:(len/2)] <- ifelse(mcmc_output_example[, 1:(len/2)] < 0.03 |
