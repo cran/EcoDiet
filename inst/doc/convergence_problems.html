@@ -12,7 +12,7 @@
 
 <meta name="author" content="Heloise Thero, Pierre-Yves Hernvann" />
 
-<meta name="date" content="2022-09-27" />
+<meta name="date" content="2023-01-06" />
 
 <title>How to deal with convergence problems</title>
 
@@ -31,23 +31,23 @@ document.addEventListener('DOMContentLoaded', function(e) {
 </script>
 
 <style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
 
 <style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
 </style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
@@ -65,55 +65,54 @@ pre > code.sourceCode { white-space: pre-wrap; }
 pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -334,28 +333,16 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">How to deal with convergence problems</h1>
 <h4 class="author">Heloise Thero, Pierre-Yves Hernvann</h4>
-<h4 class="date">2022-09-27</h4>
+<h4 class="date">2023-01-06</h4>
 
 
 
 <p>This vignette help you deal with troubling messages from the
 <code>run_model</code> function.</p>
-<ul>
-<li><p>The ‘adaptation incomplete’ warning or ‘Stopping adaptation’ note
-mean that the samplers aren’t optimised for your model after the
-adaptation phase. JAGS doesn’t estimate that the model will run with the
-optimal state. This tends to happen in complex models for a too small
-number of adaptation steps (<code>nb_adapt</code>).</p></li>
-<li><p>The ‘convergence problem’ warning means that the Gelman-Rubin
-diagnostic stayed above 1.1 for at least one variable. The Gelman-Rubin
-statistic measures the convergence for each variable. Convergence
-problems can occur in complex models with too small number of iterations
-(<code>nb_iter</code>).</p></li>
-</ul>
-<p>As a prerequisite, the <code>preprocess_data</code>,
+<p>Example of model (NB: the <code>preprocess_data</code>,
 <code>write_model</code> and <code>run_model</code> functions must have
 been run without errors before trying to solve the convergence
-problems:</p>
+problems):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EcoDiet)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>example_stomach_data_path <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;example_stomach_data.csv&quot;</span>,</span>
@@ -368,19 +355,155 @@ problems:</p>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">literature_configuration =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">stomach_data =</span> <span class="fu">read.csv</span>(example_stomach_data_path))</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>model_string <span class="ot">&lt;-</span> <span class="fu">write_model</span>(<span class="at">literature_configuration =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>mcmc_output <span class="ot">&lt;-</span> <span class="fu">run_model</span>(<span class="fu">textConnection</span>(model_string), data)</span></code></pre></div>
-<div id="increase-the-number-of-iterations-andor-adaptation-steps" class="section level2">
-<h2>Increase the number of iterations and/or adaptation steps</h2>
-<p>The first thing that you should try is setting a higher number of
-iterations and/or adaptation steps to run the model. Depending on your
-data (e.g., food-web complexity, data informativeness), this can take
-<strong>hours or days</strong> to run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mcmc_output <span class="ot">&lt;-</span> <span class="fu">run_model</span>(<span class="fu">textConnection</span>(model_string), data, <span class="at">nb_adapt =</span> <span class="fl">1e4</span>, <span class="at">nb_iter =</span> <span class="fl">1e7</span>)</span></code></pre></div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="st">&quot;mymodel.txt&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write_model</span>(<span class="at">file.name =</span> filename, <span class="at">literature_configuration =</span> literature_configuration, <span class="at">print.model =</span> F)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>mcmc_output <span class="ot">&lt;-</span> <span class="fu">run_model</span>(filename, data, <span class="at">run_param=</span><span class="st">&quot;test&quot;</span>)</span></code></pre></div>
+<div id="issues-you-can-face" class="section level2">
+<h2>Issues you can face</h2>
+<p>Several issues can be encountered when running Bayesian models that
+use Markov Chain Monte Carlo (MCMC) simulation. These issues are linked
+to the MCMC samplers, i.e. the objects that will be used to update the
+parameters of the model at each iteration, first drawing values from
+prior distributions, to then progressively moving over a posterior
+distribution and converge on a target distribution.</p>
+<div id="adaptation-issues" class="section level3">
+<h3>Adaptation issues</h3>
+<p>In some (infrequent) cases, you may encounter issues during the
+adaptation phase. The adaptation phase is a period during which, once a
+model has been initialized, the samplers modify their behavior (hence,
+<em>adapting</em> to the model structure) for an increased efficiency of
+the forthcoming sampling process. Adaptation phase issues will occur
+within JAGS and will then be communicated to the R package exchanging
+with it (here, <code>jagsUI</code>), which should then print a warning
+message and potentially stop the model run.</p>
+<p>In this situation, you should see in the console a <em>Adaptation
+incomplete</em> warning or a <em>Stopping adaptation</em> note. Such
+messages indicate that the samplers are not optimized for your model
+after the Adaptation phase. This tends to happen in complex models for a
+too small number of adaptation steps (<code>nb_adapt</code>). In the v
+2.0.0, <code>EcoDiet</code> is run with the <code>jagsUI</code> package,
+which does not require to specify an number of adaptation steps. By
+default , <code>jagsUI</code> will run groups of 100 adaptation
+iterations, up to a maximum of 10,000 iterations, until JAGS identifies
+the adaptation as sufficient. If such adaptation warnings/notes appear,
+it means that the default number of adaptation steps in jagsUI is still
+too low and that you should manually specify a higher number of
+adaptation steps using <code>nb_adapt</code> in the
+<code>run_param</code> argument of the <code>model_run</code> function
+as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mcmc_output <span class="ot">&lt;-</span> <span class="fu">run_model</span>(filename, data, <span class="at">run_param=</span><span class="fu">list</span>(<span class="at">nb_iter=</span><span class="dv">100000</span>, <span class="at">nb_burnin=</span><span class="dv">50000</span>, <span class="at">nb_thin=</span><span class="dv">50</span>, <span class="at">nb_adapt=</span><span class="dv">50000</span>), <span class="at">parallelize =</span> T)</span></code></pre></div>
+<p>Because of the number of iterations used for the default adaptation
+phase by jagsUI, we recommend to start with nb_adapt &gt; 10,000.</p>
 </div>
-<div id="specify-initial-values-for-the-model" class="section level2">
-<h2>Specify initial values for the model</h2>
+<div id="convergence-issues" class="section level3">
+<h3>Convergence issues</h3>
+<p>In theory, an MCMC sampler should converge to the target distribution
+as the number of iterations tends to infinite. However, MCMC simulation
+are (luckily) less-than-infinite. For several reasons, one or several
+variables may have difficulties to converged over that target
+distribution.</p>
+<p>In this situation, you should be notified in by:</p>
+<ul>
+<li><p>The <code>jagsUI</code> package, that will flag any convergence
+failures (Rhat &gt; 1.1) by the following message <em>WARNING Rhat
+values indicate convergence failure</em>. This message will be displayed
+in the summary paragraph provided at the end of the
+<code>run_model</code> run.</p></li>
+<li><p>The <code>EcoDiet</code> model, which will print a
+<em>Convergence warning</em> (red text). The number of variables not
+converging displayed in the warning, relatively to the total number of
+variables monitored, will give you an idea of the convergence issues
+extent. It will also indicate a potential convergence failure based on
+the same criteria and indicate the number of variables for which
+convergence diagnostic is not satisfying</p></li>
+</ul>
+<p>As previously mentioned, convergence issues could be related to one
+or several variables and may be of variable importance. The first thing
+to do in case of convergence issues will be to investigate this
+further.</p>
+<p>The <code>EcoDiet</code> package provides you with several ways of
+checking/exploring convergence.</p>
+<ul>
+<li><p>The <code>jagsUI</code> package on which is based
+<code>EcoDiet</code> (version &gt;= 2.0.0) prints at the end of each
+model run a short summary of the model configuration, statistics on the
+MCMC samples and information on the convergence of the variables.
+Convergence is assessed via the Gelman-Rubin diagnostic that you will be
+able to check in the summary table printed in the console, also
+accessible within the jagsUI object returned by the
+<code>run_model</code> function .</p></li>
+<li><p>A <code>EcoDiet</code> built-in <em>Convergence warning</em>
+message is systematically returned by the <code>run_model</code>
+function (red text).</p></li>
+<li><p>The new <code>diagnose_model</code> function allows you to
+perform the more complete Gelman-Rubin diagnostic on the MCMC outputs
+and compile all these coefficients in a matrix object. It can also
+produce a <code>.pdf</code> document with complete diagnostic plots if
+interested.</p></li>
+</ul>
+<p>[Note that, in the present version of the <code>EcoDiet</code>
+package, all convergence diagnostics are based on Gelman-Rubin test. In
+the future, other diagnostics could be integrated. If you are used to
+work with models employing GIBS or other MCMC techniques, you could also
+directly use the jasgUI outputs to test other flavors of convergence
+diagnostic.]</p>
+<p>To summary, in terms of code, you can investigate the convergence of
+the model by alternatively running the following:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: use the jagsUI object</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mcmc_output_example<span class="sc">$</span>summary[,<span class="fu">c</span>(<span class="st">&quot;Rhat&quot;</span>, <span class="st">&quot;n.eff&quot;</span>)]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: diagnose function</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Gelman_diag <span class="ot">&lt;-</span> <span class="fu">diagnose_model</span>(mcmc_output_example) <span class="co"># just display the Gelman-Rubin diagnostic</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Gelman_diag</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 3: diagnose function</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>Gelman_diag <span class="ot">&lt;-</span> <span class="fu">diagnose_model</span>(mcmc_output_example, <span class="at">var.to.diag =</span> <span class="st">&quot;all&quot;</span>, <span class="at">save =</span> <span class="cn">TRUE</span>) <span class="co"># Display the Gelman-Rubin diagnostic and produce the plots</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>Gelman_diag</span></code></pre></div>
+<p>You should use this information to elaborate some strategies for
+tackling convergence issues.</p>
+</div>
+</div>
+<div id="how-to-tackle-convergence-issues" class="section level2">
+<h2>How to tackle convergence issues</h2>
+<div id="increase-the-number-of-iterations" class="section level3">
+<h3>Increase the number of iterations</h3>
+<p>The first and easy thing that you should try is setting a higher
+number of iterations steps to run the model. Be aware that, depending on
+your data (e.g., food-web complexity, data informativeness), this can
+take <strong>hours or days</strong> to run. Using the model shortcuts
+provided in version 2.0.0, you could for example successively try to run
+youyr model in the “normal”, “long” then “very long” configurations.</p>
+<p>Increasing the number of iterations is a good solution in many cases
+and you should start from this. It would definitly look especially
+pertinent when convergence diagnoses show that, additionally to a
+substantial number of variables with numerous variables have a Rhat &gt;
+1.1, a lot of them are between 1.05 and 1.01.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mcmc_output <span class="ot">&lt;-</span> <span class="fu">run_model</span>(filename, data, <span class="at">run_param=</span><span class="st">&quot;normal&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mcmc_output <span class="ot">&lt;-</span> <span class="fu">run_model</span>(filename, data, <span class="at">run_param=</span><span class="st">&quot;long&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mcmc_output <span class="ot">&lt;-</span> <span class="fu">run_model</span>(filename, data, <span class="at">run_param=</span><span class="st">&quot;very long&quot;</span>)</span></code></pre></div>
+</div>
+<div id="increase-the-number-of-adaptation-steps" class="section level3">
+<h3>Increase the number of adaptation steps</h3>
+<p>For very complex models, you may see also consider to increase the
+adaptation phase as specified in the dedicated paragraph above. Even if
+the adaptation is considered “sufficient” by JAGS, it doesn’t mean that
+the samplers can’t be still better designed to fit the model structure.
+Manually setting an nb_adapt and progressively increase its value may
+still enhance the efficiency of your samplers and allow the model to
+reach better convergence for the same number of iterations. By keeping
+the number of iterations constant, you can progressively increase the
+<code>nb_adapt</code> as long as it seems to have an impact on
+convergence.</p>
+<p>Using this lever would look relevant if you reach low Rhat for many
+variables but still have a small set of variables that exceed 1.1, and
+if these variables are not systematically the same.</p>
+<p>Please note that the model configurations associated with the
+<code>run_param</code> shortcuts always specify nb_adapt.</p>
+</div>
+<div id="specify-initial-values-for-the-model" class="section level3">
+<h3>Specify initial values for the model</h3>
 <p>The next step might be to define starting values from which to run
 the MCMC chains. By default JAGS will use the prior distributions to
 randomly fix the starting values of the chains, which can cause
@@ -396,13 +519,21 @@ initializing MCMC chains, i.e., fixed values that you know are close to
 the values you want the model to converge to. This way the model is
 given a good start and it should be faster to converge.</p>
 </div>
+</div>
 <div id="conclusions" class="section level2">
 <h2>Conclusions</h2>
 <p>If you still have an ‘adaptation incomplete’ warning or ‘Stopping
 adaptation’ note, you can just live with the sub-optimal sampler
 efficiency and run the model for a higher number of iterations.</p>
 <p>If you still have a ‘convergence problem’ message, you cannot use the
-obtained results as they are clearly incorrect.</p>
+obtained results as they are clearly incorrect. However, note that for
+highly complex case studies, the dimension of the model may be
+considerable hence the time required by the runs may be dramatically
+long. In that context, while analyzing your results carefully, you might
+be willing to use your model outputs if a only a very limited number of
+variables don’t reach convergence after especially long runs but are
+really close from convergence. This should only done after exploration
+of all existing means to reach full convergence of the model.</p>
 </div>
 
 

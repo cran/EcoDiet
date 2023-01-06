@@ -8,19 +8,17 @@ knitr::opts_chunk$set(
 library(EcoDiet)
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  example_stomach_data <- read.csv("./data/my_stomach_data.csv", sep = ";")
-#  example_biotracer_data <- read.csv("./data/my_biotracer_data.csv", sep = ";")
+#  example_stomach_data <- read.csv("./data/my_stomach_data.csv")
+#  example_biotracer_data <- read.csv("./data/my_biotracer_data.csv")
 
 ## -----------------------------------------------------------------------------
-example_stomach_data_path <- system.file("extdata", "example_stomach_data.csv",
-                                    package = "EcoDiet")
-example_stomach_data <- read.csv(example_stomach_data_path)
+example_stomach_data <- read.csv(system.file("extdata", "example_stomach_data.csv",
+                                    package = "EcoDiet"))
 knitr::kable(example_stomach_data)
 
 ## -----------------------------------------------------------------------------
-example_biotracer_data_path <- system.file("extdata", "example_biotracer_data.csv",
-                                    package = "EcoDiet")
-example_biotracer_data <- read.csv(example_biotracer_data_path)
+example_biotracer_data <- read.csv(system.file("extdata", "example_biotracer_data.csv",
+                                    package = "EcoDiet"))
 knitr::kable(example_biotracer_data)
 
 ## ---- eval = FALSE------------------------------------------------------------
@@ -30,10 +28,11 @@ knitr::kable(example_biotracer_data)
 literature_configuration <- FALSE
 
 ## -----------------------------------------------------------------------------
-data <- preprocess_data(biotracer_data = example_biotracer_data,
+data <- preprocess_data(stomach_data = example_stomach_data,
+                        biotracer_data = example_biotracer_data,
                         trophic_discrimination_factor = c(0.8, 3.4),
-                        literature_configuration = literature_configuration,
-                        stomach_data = example_stomach_data)
+                        literature_configuration = literature_configuration
+                        )
 
 ## -----------------------------------------------------------------------------
 data <- preprocess_data(biotracer_data = example_biotracer_data,
@@ -137,28 +136,37 @@ data <- preprocess_data(biotracer_data = example_biotracer_data,
 plot_prior(data, literature_configuration, pred = "huge", variable = "eta")
 
 ## -----------------------------------------------------------------------------
-model_string <- write_model(literature_configuration = literature_configuration)
+filename <- "mymodel.txt"
+write_model(file.name = filename, literature_configuration = literature_configuration, print.model = F)
+
+## ---- eval = TRUE-------------------------------------------------------------
+mcmc_output <- run_model(filename, data, run_param = "test")
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  cat(model_string)
+#  mcmc_output <- run_model(filename, data, run_param=list(nb_iter=10000, nb_burnin=5000, nb_thin=5))
+#  mcmc_output <- run_model(filename, data, run_param=list(nb_iter=50000, nb_burnin=25000, nb_thin=25))
+#  mcmc_output <- run_model(filename, data, run_param=list(nb_iter=100000, nb_burnin=50000, nb_thin=50))
+#  
+#  mcmc_output_example <- run_model(filename, data, run_param=list(nb_iter=50000, nb_burnin=25000, nb_thin=25))
+
+## ---- eval = FALSE------------------------------------------------------------
+#  save(mcmc_output_example, file = "./data/mcmc_output_example.rda")
 
 ## -----------------------------------------------------------------------------
-mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e1, nb_iter = 1e2)
+Gelman_model <- diagnose_model(mcmc_output_example)
+print(Gelman_model)
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e2, nb_iter = 1e3)
-#  mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e3, nb_iter = 1e4)
-#  mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e3, nb_iter = 1e5)
-#  mcmc_output_example <- run_model(textConnection(model_string), data,
-#                                   nb_adapt = 1e3, nb_iter = 1e6)
-#  
-#  save(mcmc_output_example, file = "./data/mcmc_output_example.rda")
+#  diagnose_model(mcmc_output_example, var.to.diag = "all", save = TRUE)
+
+## -----------------------------------------------------------------------------
+str(mcmc_output_example)
 
 ## ---- fig.height = 4, fig.width = 6-------------------------------------------
 plot_results(mcmc_output_example, data)
 
 ## -----------------------------------------------------------------------------
-print(colMeans(mcmc_output_example))
+print(mcmc_output_example$summary[,"mean"])
 
 ## ---- fig.height = 4, fig.width = 6-------------------------------------------
 plot_results(mcmc_output_example, data, pred = "huge")
@@ -166,25 +174,11 @@ plot_results(mcmc_output_example, data, pred = "huge")
 ## ---- fig.height = 4, fig.width = 6-------------------------------------------
 plot_results(mcmc_output_example, data, pred = "large")
 
-## ---- fig.height = 4, fig.width = 6-------------------------------------------
-len <- dim(mcmc_output_example)[2]
-mcmc_output2 <- mcmc_output_example
-mcmc_output2[, 1:(len/2)] <- ifelse(mcmc_output_example[, 1:(len/2)] < 0.03 |
-                                      mcmc_output_example[, 1:(len/2)] > 0.97,
-                                    NA, mcmc_output_example[, 1:(len/2)])
+## ---- eval=FALSE--------------------------------------------------------------
+#  mcmc_output_delta <- run_model(filename, data,
+#            variables_to_save = c("delta"),
+#            run_param = "test")
 
-plot_results(mcmc_output2, data, variable = "PI", pred = "large", prey = c("medium", "small"))
-
-## -----------------------------------------------------------------------------
-quantiles <- apply(mcmc_output_example, 2, function(X) quantile(X, probs = c(0.05, 0.5, 0.95)))
-quantiles <- signif(quantiles, digits = 2)
-knitr::kable(quantiles)
-
-## -----------------------------------------------------------------------------
-mcmc_output <- run_model(textConnection(model_string), data, 
-                         variables_to_save = c("delta"),
-                         nb_adapt = 1e1, nb_iter = 1e2)
-
-## -----------------------------------------------------------------------------
-print(colMeans(mcmc_output))
+## ---- eval=FALSE--------------------------------------------------------------
+#  print(mcmc_output_delta$summary[,"mean"])
 

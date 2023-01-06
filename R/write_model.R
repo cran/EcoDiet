@@ -11,20 +11,27 @@
 #'
 #'
 #' @inheritParams preprocess_data
+#' @param file.name The name and location under which the '.txt' BUGS definition
+#' of the model will be saved. If not provided, the file will be saved in the
+#' current repository under the "EcoDiet_model.txt" name.
+#' @param print.model Indicates whether the user wants to print the written model in the console.
 #' @return A string containing the model definition in BUGS
 #'
 #' @examples
-#' model_string_1 <- write_model(literature_configuration = TRUE)
-#' cat(model_string_1)
+#' \donttest{
+#' write_model(file.name="my_model_with_priors.txt", literature_configuration = TRUE)
 #' 
-#' model_string_2 <- write_model(literature_configuration = FALSE)
-#' cat(model_string_2)
+#' write_model(literature_configuration = FALSE, print.model = TRUE)
+#' 
+#' unlink('my_model_with_priors.txt')
+#' unlink('EcoDiet_model.txt')
+#' }
 #' 
 #' @seealso \code{\link{run_model}} to run the model after it has been defined
 #'
 #' @export
 
-write_model <- function(literature_configuration = FALSE){
+write_model <- function(file.name="EcoDiet_model.txt",  literature_configuration = FALSE, print.model = FALSE){
 
   model_string1 <-
 "model{
@@ -129,5 +136,10 @@ write_model <- function(literature_configuration = FALSE){
   model_string <- paste(model_string1, model_string2, model_string3, model_string4, model_string5,
                         sep = "\n\n")
 
-  return(model_string)
+  write(model_string, file = file.name)
+  
+  if(print.model==T){
+    cat(model_string)
+  }
+  
 }

@@ -37,12 +37,12 @@ plot_prior(data, literature_configuration)
 plot_prior(data, literature_configuration, pred = "Pout")
 
 ## -----------------------------------------------------------------------------
-model_string <- write_model(literature_configuration = literature_configuration)
-
-mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e1, nb_iter = 1e2)
+filename <- "mymodel.txt"
+write_model(file.name = filename, literature_configuration = literature_configuration, print.model = F)
+mcmc_output <- run_model(filename, data, run_param="test")
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e3, nb_iter = 1e5)
+#  mcmc_output <- run_model(filename, data, run_param="normal", parallelize = T)
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  plot_results(mcmc_output, data)
@@ -79,12 +79,12 @@ plot_prior(data, literature_configuration)
 plot_prior(data, literature_configuration, pred = "Pout")
 
 ## -----------------------------------------------------------------------------
-model_string <- write_model(literature_configuration = literature_configuration)
-
-mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e1, nb_iter = 1e2)
+filename <- "mymodel_literature.txt"
+write_model(file.name = filename, literature_configuration = literature_configuration, print.model = F)
+mcmc_output <- run_model(filename, data, run_param="test")
 
 ## ---- eval = FALSE------------------------------------------------------------
-#  mcmc_output <- run_model(textConnection(model_string), data, nb_adapt = 1e3, nb_iter = 1e5)
+#  mcmc_output <- run_model(filename, data, run_param=list(nb_iter=100000, nb_burnin=50000, nb_thin=50, nb_adapt=50000), parallelize = T)
 
 ## ---- eval = FALSE------------------------------------------------------------
 #  plot_results(mcmc_output, data)
