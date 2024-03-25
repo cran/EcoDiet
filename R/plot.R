@@ -108,7 +108,6 @@ plot_matrix <- function(matrix, title, save = FALSE, save_path){
   colnames(df) <- c("pred", "prey", "value")
   df$value <- round(df$value, 2)
   df$pred <- as.factor(df$pred)
-  df$prey <- rev(as.factor(df$prey))
 
   figure <- ggplot(df, aes_string(x = "pred", y = "prey", fill = "value")) + geom_raster() + theme_bw() +
     #scale_x_continuous(labels = colnames(matrix)), breaks = seq(1, ncol(matrix))) +
@@ -121,7 +120,7 @@ plot_matrix <- function(matrix, title, save = FALSE, save_path){
           panel.grid.minor = element_blank(),
           axis.title = element_text(size = 15),
           axis.text.x = element_text(size = 12, angle = 45, vjust = 1, hjust = 1),
-          axis.text.y = element_text(size = 12, angle = 45, vjust = 1, hjust = 0),
+          axis.text.y = element_text(size = 12, angle = 45, vjust = 0, hjust = 1),
           legend.title = element_blank(),
           plot.title = element_text(hjust = 0.5))
   
@@ -569,7 +568,7 @@ plot_posterior_distribution <- function(mcmc_output, data, pred, prey,
     ggtitle(paste(title, "\nfor the", colnames(data$o)[pred_index], "predator")) +
     ylab("Density") +
     scale_shape_manual(values = c(seq(1:10))) +
-    guides(colour = guide_legend(byrow = 1, ncol = 1), shape = guide_legend(byrow = 1, ncol = 1)) +
+    guides(colour = guide_legend(byrow = TRUE, ncol = 1), shape = guide_legend(byrow = TRUE, ncol = 1)) +
     xlim(0, 1) +
     theme_bw() +
     theme(axis.title.x = element_blank(),

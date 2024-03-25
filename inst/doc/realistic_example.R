@@ -95,3 +95,6 @@ mcmc_output <- run_model(filename, data, run_param="test")
 ## ---- eval = FALSE------------------------------------------------------------
 #  plot_results(mcmc_output, data, pred = "Pout", save = TRUE, save_path = ".")
 
+## ---- eval = FALSE------------------------------------------------------------
+#  reshape_mcmc(mcmc_output, data)
+
